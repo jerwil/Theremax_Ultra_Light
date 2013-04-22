@@ -41,12 +41,6 @@ Serial.println(note_val);
 
 setColor(color_array[note_val]);
   
-//int i;
-//for (i = 0; i < 8; i = i + 1){
-//  setColor(color_array[i]);     
-//    delay(1000);
-//}
-
 }
 
 void setColor(int input_array[3])
