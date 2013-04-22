@@ -5,14 +5,17 @@ int redPin = 9;
 int greenPin = 10;
 int bluePin = 11;
 
-int analog_val;
-int sensor_limit = 1024;
+int analog_val; // Analog input from sensor
+int note_val; // The current note to play and light color to choose
+int sensor_limit = 1024; // The max analog value we look for in the sensor
+int divisions = 8; // Number of notes in the range
 
 void setup()
 {
     pinMode(redPin, OUTPUT);
     pinMode(greenPin, OUTPUT);
     pinMode(bluePin, OUTPUT);
+    Serial.begin(9600);
 }
 
 int color_array[][3] = {
@@ -30,12 +33,19 @@ void loop()
 {
 
 analog_val = analogRead(analogPin);
+
+note_val = analog_val/(sensor_limit / 8); 
+
+Serial.println(analog_val);
+Serial.println(note_val);
+
+setColor(color_array[note_val]);
   
-int i;
-for (i = 0; i < 8; i = i + 1){
-  setColor(color_array[i]);     
-    delay(1000);
-}
+//int i;
+//for (i = 0; i < 8; i = i + 1){
+//  setColor(color_array[i]);     
+//    delay(1000);
+//}
 
 }
 
